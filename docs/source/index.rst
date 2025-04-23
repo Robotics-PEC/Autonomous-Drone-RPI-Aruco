@@ -6,13 +6,19 @@
 Autonomous Drone RPI Aruco
 ===========================
 
+.. note:: This is a work in progress, may change in the future.
+
 .. toctree::
    :maxdepth: 2
-   :caption: Architecture:
+   :caption: Getting Started:
+
+   intro
 
 .. toctree::
    :maxdepth: 2
    :caption: Simulation:
+
+   simulation
 
 .. toctree::
    :maxdepth: 2

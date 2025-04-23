@@ -1,8 +1,7 @@
 <p align="center">
     <a href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco/releases"><img src="https://img.shields.io/github/v/release/Robotics-PEC/Autonomous-Drone-RPI-Aruco" alt="GitHub Release"></a>
     <a href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco/issues"><img src="https://img.shields.io/github/issues/Robotics-PEC/Autonomous-Drone-RPI-Aruco" alt="Github Issues"></a>
-    <a href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco"><img src="https://img.shields.io/github/stars/Robotics-PEC/Autonomous-Drone-RPI-Aruco?style=flat
-    " alt="GitHub Stars"></a>
+    <a href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco"><img src="https://img.shields.io/github/stars/Robotics-PEC/Autonomous-Drone-RPI-Aruco?style=flat" alt="GitHub Stars"></a>
     <a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/github/license/Robotics-PEC/Autonomous-Drone-RPI-Aruco" alt="GitHub License"></a>
 </p>
 
