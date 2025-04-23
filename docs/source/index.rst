@@ -3,15 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Getting Started with ROS
-========================
+Autonomous Drone RPI Aruco
+===========================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+.. note:: This is a work in progress, may change in the future.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Getting Started:
 
+   intro
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Simulation:
+
+   simulation
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Autonomous Flight:
