@@ -1,7 +1,12 @@
 import asyncio
+import threading
+
 from mavsdk import System
 from mavsdk.offboard import OffboardError, VelocityNedYaw
 
+from AdaImageControl import GetVideo
+
+# Define async function to run the drone control
 async def run():
     drone = System()
     await drone.connect(system_address="udp://:14540")
@@ -22,41 +27,43 @@ async def run():
     await drone.action.arm()
 
     print("-- Taking off")
+    await drone.action.set_takeoff_altitude(5)
     await drone.action.takeoff()
-    await asyncio.sleep(7)  # Climb to ~10ft / ~3m
+    await asyncio.sleep(30)
 
-    print("-- Starting Offboard mode")
-    await drone.offboard.set_velocity_ned(
-        VelocityNedYaw(0.0, 0.0, 0.0, 0.0))  # Initial stable command
-    try:
-        await drone.offboard.start()
-    except OffboardError as error:
-        print(f"Starting offboard failed: {error._result.result}")
-        print("-- Disarming")
-        await drone.action.disarm()
-        return
+    # print("-- Starting Offboard mode")
+    # await drone.offboard.set_velocity_ned(
+    #     VelocityNedYaw(0.0, 0.0, 0.0, 0.0)
+    # )  # Initial stable command
+    # try:
+    #     await drone.offboard.start()
+    # except OffboardError as error:
+    #     print(f"Starting offboard failed: {error._result.result}")
+    #     print("-- Disarming")
+    #     await drone.action.disarm()
+    #     return
 
-    print("-- Moving forward for 5 seconds")
-    await drone.offboard.set_velocity_ned(VelocityNedYaw(1.0, 0.0, 0.0, 0.0))
-    await asyncio.sleep(5)
+    # print("-- Moving forward for 5 seconds")
+    # await drone.offboard.set_velocity_ned(VelocityNedYaw(1.0, 0.0, 0.0, 0.0))
+    # await asyncio.sleep(5)
 
-    print("-- Moving right for 5 seconds")
-    await drone.offboard.set_velocity_ned(VelocityNedYaw(0.0, 1.0, 0.0, 0.0))
-    await asyncio.sleep(5)
+    # print("-- Moving right for 5 seconds")
+    # await drone.offboard.set_velocity_ned(VelocityNedYaw(0.0, 1.0, 0.0, 0.0))
+    # await asyncio.sleep(5)
 
-    print("-- Moving back for 5 seconds")
-    await drone.offboard.set_velocity_ned(VelocityNedYaw(-1.0, 0.0, 0.0, 0.0))
-    await asyncio.sleep(5)
+    # print("-- Moving back for 5 seconds")
+    # await drone.offboard.set_velocity_ned(VelocityNedYaw(-1.0, 0.0, 0.0, 0.0))
+    # await asyncio.sleep(5)
 
-    print("-- Stopping movement")
-    await drone.offboard.set_velocity_ned(VelocityNedYaw(0.0, 0.0, 0.0, 0.0))
-    await asyncio.sleep(1)
+    # print("-- Stopping movement")
+    # await drone.offboard.set_velocity_ned(VelocityNedYaw(0.0, 0.0, 0.0, 0.0))
+    # await asyncio.sleep(1)
 
-    print("-- Stopping offboard mode")
-    try:
-        await drone.offboard.stop()
-    except OffboardError as error:
-        print(f"Stopping offboard failed: {error._result.result}")
+    # print("-- Stopping offboard mode")
+    # try:
+    #     await drone.offboard.stop()
+    # except OffboardError as error:
+    #     print(f"Stopping offboard failed: {error._result.result}")
 
     print("-- Returning to Launch (RTL)")
     await drone.action.return_to_launch()
@@ -70,9 +77,19 @@ async def run():
 
     print("-- Mission complete")
 
-def main():
-    print("Starting mission...")
-    asyncio.run(run())
+
+# Main function to run both video stream and drone control concurrently
+async def main():
+    # Create a thread for the video stream to avoid blocking the main event loop
+    video_thread = threading.Thread(target=GetVideo)
+    video_thread.start()
+
+    # Run the drone control async function
+    await run()
+
+    # Wait for the video thread to finish (if needed)
+    video_thread.join()
+
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
