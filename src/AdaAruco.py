@@ -1,11 +1,16 @@
 import cv2
-from cv2 import aruco
-from AdaVideoStream import AdaVideoStream
 
+from cv2 import aruco
+
+from AdaVideoStream import AdaVideoStream
+from AdaDebug import AdaDebug
 
 class AdaAruco:
 
     def __init__(self, arucoDictionary=aruco.DICT_4X4_250):
+        # Starting Module
+        Debug = AdaDebug("AdaAruco")
+
         # Load the specified ArUco dictionary (default is 4x4 with 250 markers)
         aruco_dict = aruco.getPredefinedDictionary(arucoDictionary)
 
