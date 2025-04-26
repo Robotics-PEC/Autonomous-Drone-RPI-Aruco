@@ -9,34 +9,8 @@ RUN apt-get update && apt-get install -y \
     sudo \
     git \
     wget \
-    # python3 \
-    # python3-pip \
-    # python3-jinja2 \
-    # python3-numpy \
-    # python3-dev \
-    # python3-setuptools \
-    # python3-wheel \
-    # ninja-build \
-    # exiftool \
-    # zip \
-    # unzip \
     curl \
     lsb-release \
-    # gnupg \
-    # ca-certificates \
-    # build-essential \
-    # cmake \
-    # g++ \
-    # protobuf-compiler \
-    # libeigen3-dev \
-    # libopencv-dev \
-    # libxml2-utils \
-    # ant \
-    # openjdk-11-jdk \
-    # xz-utils \
-    # pkg-config \
-    # libtool \
-    # libudev-dev \
     && apt-get clean
 
 # Create user and add to sudo group
