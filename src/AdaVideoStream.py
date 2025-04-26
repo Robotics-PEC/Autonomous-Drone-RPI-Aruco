@@ -1,5 +1,7 @@
 import cv2
 
+from AdaDebug import AdaDebug
+
 
 class AdaVideoStream:
     """
@@ -8,6 +10,8 @@ class AdaVideoStream:
     """
 
     def __init__(self, port: int = 5600):
+        # Starting Debug
+        Debug = AdaDebug("AdaVideoStream")
 
         # Create a GStreamer Pipeline
         pipeline = (
@@ -20,7 +24,7 @@ class AdaVideoStream:
 
         # Error checking for created object
         if not self.capture.isOpened():
-            print("Error: Could not open UDP stream.")
+            Debug.log("Error: Could not open UDP stream.")
             exit()
 
     def read_frame(self):
