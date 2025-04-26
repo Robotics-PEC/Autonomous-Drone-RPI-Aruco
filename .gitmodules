@@ -1,0 +1,3 @@
+[submodule "lib/opencv-python"]
+	path = lib/opencv-python
+	url = git@github.com:opencv/opencv-python.git

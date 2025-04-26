@@ -19,6 +19,7 @@ Autonomous Drone RPI Aruco
    :caption: Simulation:
 
    simulation
+   opencv
 
 .. toctree::
    :maxdepth: 2
