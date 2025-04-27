@@ -3,6 +3,7 @@ import cv2
 from AdaVideoStream import AdaVideoStream
 from AdaAruco import AdaAruco
 from AdaDebug import AdaDebug
+from AdaQueue import push_result
 
 
 # Function to handle the video stream in a separate thread
@@ -18,7 +19,10 @@ def GetVideo():
         frame = CameraStreamer.read_frame()
         ArucoDetector.PutImage(frame)
         ArucoDetector.DetectAruco()
-        ArucoDetector.GetCenter()
+        result = ArucoDetector.GetCenter()
+
+        if result is not None:
+            push_result(result)
 
         # Display the frame
         cv2.imshow("GStreamer Video", frame)
