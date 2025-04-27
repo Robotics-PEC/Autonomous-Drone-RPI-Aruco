@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   px4-sitl:
     image: px4-sitl
