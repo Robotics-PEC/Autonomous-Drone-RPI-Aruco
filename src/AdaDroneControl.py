@@ -26,14 +26,17 @@ class AdaDroneController:
                 self.debug.Log("Global position estimate OK")
                 break
 
-    async def arm_and_takeoff(self, altitude=5):
+    async def arm(self):
         self.debug.Log("Arming")
         await self.drone.action.arm()
+        await asyncio.sleep(1)  # Wait for stable takeoff
+
+    async def takeoff(self, altitude=5):
 
         self.debug.Log(f"Taking off to {altitude} meters")
         await self.drone.action.set_takeoff_altitude(altitude)
         await self.drone.action.takeoff()
-        await asyncio.sleep(30)  # Wait for stable takeoff
+        await asyncio.sleep(5)  # Wait for stable takeoff
 
     async def start_offboard_mode(self):
         self.debug.Log("Starting Offboard mode")
@@ -79,9 +82,10 @@ class AdaDroneController:
             await asyncio.sleep(1)
 
 
-async def DemoMission(self):
+async def DemoMission(self:AdaDroneController):
     await self.connect()
-    await self.arm_and_takeoff()
+    await self.arm()
+    await self.takeoff()
 
     await self.start_offboard_mode()
 

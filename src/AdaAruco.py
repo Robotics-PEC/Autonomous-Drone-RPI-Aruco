@@ -5,6 +5,7 @@ from cv2 import aruco
 from AdaVideoStream import AdaVideoStream
 from AdaDebug import AdaDebug
 
+
 class AdaAruco:
 
     def __init__(self, arucoDictionary=aruco.DICT_4X4_250):
@@ -36,21 +37,26 @@ class AdaAruco:
         if self.ids is not None:
             for idx, id in enumerate(self.ids):
 
-                _corners = self.corners[idx][0]
+                corners = self.corners[idx][0]
 
                 # Compute center (average top-left and bottom-right)
-                _centerX = int((_corners[0][0] + _corners[2][0]) / 2)
-                _centerY = int((_corners[0][1] + _corners[2][1]) / 2)
+                centerX = int((corners[0][0] + corners[2][0]) / 2)
+                centerY = int((corners[0][1] + corners[2][1]) / 2)
+
+                error_x = (self.FrameCenterX - centerX) / self.FrameCenterX
+                error_y = (self.FrameCenterY - centerY) / self.FrameCenterY
 
                 # Draw the center
-                cv2.circle(self.image, (_centerX, _centerY), 1, (0, 255, 0), -1)
+                cv2.circle(self.image, (centerX, centerY), 1, (0, 255, 0), -1)
                 cv2.line(
                     self.image,
-                    (_centerX, _centerY),
+                    (centerX, centerY),
                     (self.FrameCenterX, self.FrameCenterY),
                     (0, 255, 0),
                     1,
                 )
+
+                return (error_x, error_y)
 
 
 if __name__ == "__main__":
