@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the Code &mdash; Autonomous Drone  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=364fe29c" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Compiling Opencv" href="opencv.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Autonomous Drone
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Basic setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#cloning-the-repository">Cloning the repository</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#running-with-docker">Running with docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#build-the-docker-image">Build the docker image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#run-the-container">Run the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#stopping-the-container">Stopping the container</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#running-natively">Running natively</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#clone-the-repositroy">Clone the repositroy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#change-directory">Change directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#installing-dependencies">Installing dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#running-the-simulation">Running the simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opencv.html">Compiling Opencv</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opencv.html#cloning-the-opencv-repo">Cloning the OpenCV repo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencv.html#id1">Compiling OpenCV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#go-to-the-opencv-directory">Go to the opencv directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#set-the-cmake-arguments">Set the cmake arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#upgrade-wheels-optional">Upgrade wheels (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#build-opencv">Build OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#add-the-wheels-to-the-python-path">Add the wheels to the python path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Explanation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding the Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#adaaruco-aruco-marker-detection">AdaAruco (ArUco Marker Detection)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-flow">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adavideostream-video-stream-handling">AdaVideoStream (Video Stream Handling)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adapidcontroller-pid-control">AdaPIDController (PID Control)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adadronecontroller-drone-control">AdaDroneController (Drone Control)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adadebug-logging-and-debugging">AdaDebug (Logging and Debugging)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#state-machine-and-mission-control">State Machine and Mission Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Data Flow:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queue-management-adaqueue">Queue Management (AdaQueue)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Data Flow:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Autonomous Drone</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Understanding the Code</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco/blob/main/docs/sourcecodeIntro.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="understanding-the-code">
+<h1>Understanding the Code<a class="headerlink" href="#understanding-the-code" title="Link to this heading"></a></h1>
+<p>This codebase is designed to control a drone using ArUco marker detection
+and PID-based control algorithms. The system processes video streams,
+detects ArUco markers, calculates errors in position, and uses this data
+to move the drone accordingly. Below, I’ll explain each module, how they
+interact, and the data flow within the system.</p>
+<section id="adaaruco-aruco-marker-detection">
+<h2>AdaAruco (ArUco Marker Detection)<a class="headerlink" href="#adaaruco-aruco-marker-detection" title="Link to this heading"></a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">AdaAruco.py</span></code></p>
+<section id="purpose">
+<h3>Purpose:<a class="headerlink" href="#purpose" title="Link to this heading"></a></h3>
+<p>The AdaAruco module is responsible for detecting ArUco markers in the video stream. ArUco markers are used for visual localization and guidance of the drone.</p>
+</section>
+<section id="data-flow">
+<h3>Data Flow:<a class="headerlink" href="#data-flow" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Input:</strong> Raw video frames from the AdaVideoStream class.</p></li>
+<li><p><strong>Processing:</strong> The class detects ArUco markers in the frame and calculates their center based on the detected corners.</p></li>
+<li><p><strong>Output:</strong> It outputs the center error of the detected ArUco markers relative to the center of the frame.</p></li>
+</ul>
+</section>
+</section>
+<section id="adavideostream-video-stream-handling">
+<h2>AdaVideoStream (Video Stream Handling)<a class="headerlink" href="#adavideostream-video-stream-handling" title="Link to this heading"></a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">AdaVideoStream.py</span></code></p>
+<section id="id1">
+<h3>Purpose:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>The AdaVideoStream class manages the retrieval of video frames from a UDP stream using the GStreamer library.</p>
+</section>
+<section id="id2">
+<h3>Data Flow:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Input:</strong> The UDP video stream (via GStreamer pipeline).</p></li>
+<li><p><strong>Processing:</strong> GStreamer decodes the stream and provides frames for further processing.</p></li>
+<li><p><strong>Output:</strong> The video frames are returned for marker detection or control.</p></li>
+</ul>
+</section>
+</section>
+<section id="adapidcontroller-pid-control">
+<h2>AdaPIDController (PID Control)<a class="headerlink" href="#adapidcontroller-pid-control" title="Link to this heading"></a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">AdaController.py</span></code></p>
+<section id="id3">
+<h3>Purpose:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>This module implements a PID (Proportional, Integral, Derivative) controller to calculate corrective actions based on the position errors of the drone.</p>
+</section>
+<section id="id4">
+<h3>Data Flow:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Input:</strong> Error values (e.g., position deviation from the center of the frame).</p></li>
+<li><p><strong>Processing:</strong> The PID controller computes corrective values for movement.</p></li>
+<li><p><strong>Output:</strong> Control signals that are sent to the drone.</p></li>
+</ul>
+</section>
+</section>
+<section id="adadronecontroller-drone-control">
+<h2>AdaDroneController (Drone Control)<a class="headerlink" href="#adadronecontroller-drone-control" title="Link to this heading"></a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">AdaDroneControl.py</span></code></p>
+<section id="id5">
+<h3>Purpose:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>The AdaDroneController class interfaces with the drone using MAVSDK, allowing for flight control such as arming, takeoff, movement, and landing.</p>
+</section>
+<section id="id6">
+<h3>Data Flow:<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Input:</strong> Commands to arm, take off, move, and stop, based on the system’s state machine and sensor data.</p></li>
+<li><p><strong>Processing:</strong> Sends commands to the drone through the MAVSDK library.</p></li>
+<li><p><strong>Output:</strong> Controls the drone’s movement based on the PID-controlled outputs.</p></li>
+</ul>
+</section>
+</section>
+<section id="adadebug-logging-and-debugging">
+<h2>AdaDebug (Logging and Debugging)<a class="headerlink" href="#adadebug-logging-and-debugging" title="Link to this heading"></a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">AdaDebug.py</span></code></p>
+<section id="id7">
+<h3>Purpose:<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>The AdaDebug module provides logging functionality to help track the flow of the system.</p>
+</section>
+<section id="id8">
+<h3>Data Flow:<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Input:</strong> Log messages from various parts of the system.</p></li>
+<li><p><strong>Processing:</strong> Logs messages to the console.</p></li>
+<li><p><strong>Output:</strong> Provides visibility into the internal states of the system for debugging.</p></li>
+</ul>
+</section>
+</section>
+<section id="state-machine-and-mission-control">
+<h2>State Machine and Mission Control<a class="headerlink" href="#state-machine-and-mission-control" title="Link to this heading"></a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">AdaVideoSteram.py</span></code></p>
+<section id="id9">
+<h3>Purpose:<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>This file manages the drone’s mission using a state machine (FSM_STATES), directing the drone through various phases like initialization, takeoff, movement, and landing.</p>
+</section>
+<section id="id10">
+<h3>Data Flow:<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Input:</strong> Feedback from the ArUco marker detection system (position errors).</p></li>
+<li><p><strong>Processing:</strong> The state machine controls the drone’s operations (e.g., takeoff, movement) based on the current state.</p></li>
+<li><p><strong>Output:</strong> Commands to move or stop the drone, using the PID-controlled outputs.</p></li>
+</ul>
+</section>
+<section id="queue-management-adaqueue">
+<h3>Queue Management (AdaQueue)<a class="headerlink" href="#queue-management-adaqueue" title="Link to this heading"></a></h3>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">AdaQueue.py</span></code></p>
+</section>
+<section id="id11">
+<h3>Purpose:<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>The queue is used for inter-thread communication between the video stream and the drone control system.</p>
+</section>
+<section id="id12">
+<h3>Data Flow:<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Input:</strong> Results from the ArUco detection.</p></li>
+<li><p><strong>Processing:</strong> These results are pushed to the queue for consumption by the main control loop.</p></li>
+<li><p><strong>Output:</strong> The results are used to adjust the drone’s position.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="opencv.html" class="btn btn-neutral float-left" title="Compiling Opencv" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Witty Wizard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

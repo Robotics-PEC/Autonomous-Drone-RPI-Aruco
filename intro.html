@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting the code &mdash; Autonomous Drone  documentation</title>
+  <title>Basic setup &mdash; Autonomous Drone  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -23,7 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Running Simulations" href="simulation.html" />
+    <link rel="next" title="Simulation" href="simulation.html" />
     <link rel="prev" title="Autonomous Drone RPI Aruco" href="index.html" /> 
 </head>
 
@@ -49,17 +49,76 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting the code</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cloning-the-repository">Cloning the repository</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Simulation:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="simulation.html">Running Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="simulation.html#docker">Docker</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#running-with-docker">Running with docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#build-the-docker-image">Build the docker image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#run-the-container">Run the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#stopping-the-container">Stopping the container</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#running-natively">Running natively</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#clone-the-repositroy">Clone the repositroy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#change-directory">Change directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#installing-dependencies">Installing dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation.html#running-the-simulation">Running the simulation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opencv.html">Compiling Opencv</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="opencv.html#cloning-the-opencv-repo">Cloning the OpenCV repo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opencv.html#id1">Compiling OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencv.html#id1">Compiling OpenCV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#go-to-the-opencv-directory">Go to the opencv directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#set-the-cmake-arguments">Set the cmake arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#upgrade-wheels-optional">Upgrade wheels (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#build-opencv">Build OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#add-the-wheels-to-the-python-path">Add the wheels to the python path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codeIntro.html">Understanding the Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adaaruco-aruco-marker-detection">AdaAruco (ArUco Marker Detection)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#purpose">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#data-flow">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adavideostream-video-stream-handling">AdaVideoStream (Video Stream Handling)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id1">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id2">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adapidcontroller-pid-control">AdaPIDController (PID Control)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id3">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id4">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adadronecontroller-drone-control">AdaDroneController (Drone Control)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id5">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id6">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adadebug-logging-and-debugging">AdaDebug (Logging and Debugging)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id7">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id8">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#state-machine-and-mission-control">State Machine and Mission Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id9">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id10">Data Flow:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#queue-management-adaqueue">Queue Management (AdaQueue)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id11">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id12">Data Flow:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -78,7 +137,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Getting the code</li>
+      <li class="breadcrumb-item active">Basic setup</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco/blob/main/docs/sourceintro.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -88,12 +147,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="getting-the-code">
-<h1>Getting the code<a class="headerlink" href="#getting-the-code" title="Link to this heading"></a></h1>
-<p>clone the repository using the folllowing command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco.git
+  <section id="basic-setup">
+<h1>Basic setup<a class="headerlink" href="#basic-setup" title="Link to this heading"></a></h1>
+<p>This code has been tested majorly on linux systems, so if you are on windows
+I recommend using <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL2</a>,
+and if you are on Mac OS then consider using a docker container with Ubuntu
+installed.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Their are some Prerequisites that are needed for this project:</p>
+<p>1. <strong>Git</strong> - To clone the repository and it’s submodule (Very important without this
+image capture won’t work)</p>
+<p>2. <strong>Python 3.10</strong> - I used <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.10</span></code> for this project, and I recommend using
+that only, don’t know how the dependencies will behave with other version of python</p>
+<p>3. <strong>Docker</strong> - Docker is required to run the simulation, you can run the simulation
+without docker but setup of the <a class="reference external" href="https://px4.io/">PX4</a> simulation stack is needed, I will have a guide
+to that aswell so having docker is optional</p>
+<p>4. <strong>C/C++ Compiler</strong> - A C/C++ compiler,specifically <code class="docutils literal notranslate"><span class="pre">GCC</span></code> to compile <a class="reference external" href="https://opencv.org/">OpenCV</a>,
+yes we will be building <code class="docutils literal notranslate"><span class="pre">OpenCV</span></code> from source, as some features that we need are not enabled
+in the <code class="docutils literal notranslate"><span class="pre">pip</span></code> distributed version.</p>
+<p>5. <strong>QGroundControl</strong> - It is a groundcontrol station for drones, this can be used to manually control the
+drone, come handy to check error logs or get the drone back to home location in case the aruco detection
+goes haywire.</p>
+<p>Go and install these dependencies, once done come back and clone the repository.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you face any issue please contact me through the
+<a class="reference external" href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco/issues">github issue tracker</a>, and tag
+<a class="reference external" href="https://github.com/Witty-Wizard">me</a></p>
+</div>
+</section>
+<section id="cloning-the-repository">
+<h2>Cloning the repository<a class="headerlink" href="#cloning-the-repository" title="Link to this heading"></a></h2>
+<p>Installed all the dependencies? Great!!</p>
+<p>Now time to clone the repository on your system, for that run the following command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco.git<span class="w"> </span>--recursive
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice that there is a <code class="docutils literal notranslate"><span class="pre">--recursive</span></code> flag in the clone command, this tells git to
+clone the base repositroy aswell as the submodule it might contain.</p>
+<p>Submodules are git repository inside other git repositories.</p>
+</div>
+<p>Now from this point you can take two approaches either start exploring the code base to
+understand the working of the whole project, or simply start running the project
+directly by following a step by step guide.</p>
+<p>If you want to run the code as it is, go to the next page. Otherwise go to <a class="reference external" href="codeIntro.html">this link</a></p>
+</section>
 </section>
 
 
@@ -101,7 +202,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Autonomous Drone RPI Aruco" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="simulation.html" class="btn btn-neutral float-right" title="Running Simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="simulation.html" class="btn btn-neutral float-right" title="Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Running Simulations &mdash; Autonomous Drone  documentation</title>
+  <title>Simulation &mdash; Autonomous Drone  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Compiling Opencv" href="opencv.html" />
-    <link rel="prev" title="Getting the code" href="intro.html" /> 
+    <link rel="prev" title="Basic setup" href="intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,18 +48,77 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Getting the code</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Simulation:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Running Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Basic setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#cloning-the-repository">Cloning the repository</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-with-docker">Running with docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-docker-image">Build the docker image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-container">Run the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stopping-the-container">Stopping the container</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-natively">Running natively</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clone-the-repositroy">Clone the repositroy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-directory">Change directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-dependencies">Installing dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-simulation">Running the simulation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opencv.html">Compiling Opencv</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="opencv.html#cloning-the-opencv-repo">Cloning the OpenCV repo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opencv.html#id1">Compiling OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencv.html#id1">Compiling OpenCV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#go-to-the-opencv-directory">Go to the opencv directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#set-the-cmake-arguments">Set the cmake arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#upgrade-wheels-optional">Upgrade wheels (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#build-opencv">Build OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencv.html#add-the-wheels-to-the-python-path">Add the wheels to the python path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Explanation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codeIntro.html">Understanding the Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adaaruco-aruco-marker-detection">AdaAruco (ArUco Marker Detection)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#purpose">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#data-flow">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adavideostream-video-stream-handling">AdaVideoStream (Video Stream Handling)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id1">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id2">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adapidcontroller-pid-control">AdaPIDController (PID Control)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id3">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id4">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adadronecontroller-drone-control">AdaDroneController (Drone Control)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id5">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id6">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#adadebug-logging-and-debugging">AdaDebug (Logging and Debugging)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id7">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id8">Data Flow:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codeIntro.html#state-machine-and-mission-control">State Machine and Mission Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id9">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id10">Data Flow:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#queue-management-adaqueue">Queue Management (AdaQueue)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id11">Purpose:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codeIntro.html#id12">Data Flow:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -78,7 +137,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Running Simulations</li>
+      <li class="breadcrumb-item active">Simulation</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/Robotics-PEC/Autonomous-Drone-RPI-Aruco/blob/main/docs/sourcesimulation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -88,24 +147,103 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="running-simulations">
-<h1>Running Simulations<a class="headerlink" href="#running-simulations" title="Link to this heading"></a></h1>
-<section id="docker">
-<h2>Docker<a class="headerlink" href="#docker" title="Link to this heading"></a></h2>
+  <section id="simulation">
+<h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading"></a></h1>
+<p>To run this simulation I am using PX4 that is a drone autopilot firmware,
+which also provides Software-In-The-Loop (or SITL) support.</p>
+<p>To run the simulation you can either use the prebuild docker image
+that is included with this project under the <code class="docutils literal notranslate"><span class="pre">docker</span></code> directory, or
+you can clone <a class="reference external" href="https://github.com/PX4/PX4-Autopilot">PX4 repository</a> and run it directly</p>
+<section id="running-with-docker">
+<h2>Running with docker<a class="headerlink" href="#running-with-docker" title="Link to this heading"></a></h2>
+<p>I have made a docker image that will clone PX4 build it and then launch SITL.</p>
+<p>First the image needs to be built for that run the following command:</p>
+<section id="build-the-docker-image">
+<h3>Build the docker image<a class="headerlink" href="#build-the-docker-image" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>--progress<span class="o">=</span>plain<span class="w"> </span>-t<span class="w"> </span>px4-sitl<span class="w"> </span>./docker
 </pre></div>
 </div>
 <p>Then, run the simulation using the following command:</p>
+</section>
+<section id="run-the-container">
+<h3>Run the container<a class="headerlink" href="#run-the-container" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </pre></div>
 </div>
-<p>or on non-unix like systems (windows 😒)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-d</span></code> flag in docker compose is used to run the container in deteached state,
+meaning that the container keeps running in background and there is no need to keep
+the terminal open.</p>
+</div>
+<p>Now the SITL is runnning, try launching QGroundControl, it should auto connect to the
+drone and you should be able to fly the drone using it.</p>
+</section>
+<section id="stopping-the-container">
+<h3>Stopping the container<a class="headerlink" href="#stopping-the-container" title="Link to this heading"></a></h3>
+<p>To stop the container run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>compose<span class="w"> </span>down
 </pre></div>
 </div>
-<p>now the simulation is running open QGroundControl if you have
-any doubt email me:
-<a class="reference external" href="mailto:shashankmarch27&#37;&#52;&#48;gmail&#46;com">shashankmarch27<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure to run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span></code> command from the root directory of the repositroy
+otherwise it won’t work</p>
+</div>
+</section>
+</section>
+<section id="running-natively">
+<h2>Running natively<a class="headerlink" href="#running-natively" title="Link to this heading"></a></h2>
+<p>So, you don’t want to use the container, fine, follow the following instructions to
+setup PX4 and start simulation</p>
+<section id="clone-the-repositroy">
+<h3>Clone the repositroy<a class="headerlink" href="#clone-the-repositroy" title="Link to this heading"></a></h3>
+<p>Clone the PX4-Autopilot repository using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/PX4/PX4-Autopilot.git<span class="w"> </span>--recursive<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the <code class="docutils literal notranslate"><span class="pre">--depth=1</span></code> flag ensures that only the last commit is cloned from the remote
+otherwise it would take a lot of time to clone the whole repository</p>
+</div>
+</section>
+<section id="change-directory">
+<h3>Change directory<a class="headerlink" href="#change-directory" title="Link to this heading"></a></h3>
+<p>Now that the repository has been cloned, move inside the directory using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>PX4-Autopilot
+</pre></div>
+</div>
+</section>
+<section id="installing-dependencies">
+<h3>Installing dependencies<a class="headerlink" href="#installing-dependencies" title="Link to this heading"></a></h3>
+<p>To build PX4 some tools are required, luckily they provide a script to install all the
+required dependencies.</p>
+<p>To install them run the following script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./Tools/setup/ubuntu.sh<span class="w"> </span>--no-nuttx
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the script does not run then it might not have executable permissions, to fix it
+run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>./Tools/setup/ubuntu.sh
+</pre></div>
+</div>
+<p>Now run the script again</p>
+</div>
+</section>
+<section id="running-the-simulation">
+<h3>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Link to this heading"></a></h3>
+<p>Now time to build and run the simulation, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>px4_sitl<span class="w"> </span>gz_x500_mono_cam_down
+</pre></div>
+</div>
+<p>If you run this for the first time it will take some time as it is building the project
+for the first time.</p>
+<p>Once the build is done, the simulation will start on its own and you can use QGroundControl
+to control the drone</p>
+</section>
 </section>
 </section>
 
@@ -113,7 +251,7 @@ any doubt email me:
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="intro.html" class="btn btn-neutral float-left" title="Getting the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro.html" class="btn btn-neutral float-left" title="Basic setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="opencv.html" class="btn btn-neutral float-right" title="Compiling Opencv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

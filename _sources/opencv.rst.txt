@@ -1,7 +1,7 @@
 Compiling Opencv
 #################
 
-We need to compile our own version of openvc 
+We need to compile our own version of OpenCV 
 to enable Gstream support, it helps us stream
 video from camera over sockets.
 
@@ -23,25 +23,29 @@ Compiling OpenCV
 *******************
 Now we can compile OpenCV
 
-1. Go to the opencv directory
+Go to the opencv directory
+==========================
 
 .. code-block:: bash
 
     cd lib/opencv-python
 
-2. Set the cmake arguments
+Set the cmake arguments
+=======================
 
 .. code-block:: bash
 
     export CMAKE_ARGS="-DWITH_GSTREAMER=ON"
 
-3. Upgrade wheels (optional)
+Upgrade wheels (optional)
+=========================
 
 .. code-block:: bash
 
     pip install --upgrade pip wheel
 
-4. Build OpenCV
+Build OpenCV
+==============
 
 .. note:: 
     This step may take a while, depending on your machine.
@@ -55,11 +59,11 @@ Now we can compile OpenCV
 
     pip wheel . --verbose
 
-5. Add the wheels to the python path
+Add the wheels to the python path
+=================================
 
 .. code-block:: bash
 
     pip install opencv_python-*.whl
 
-This command will install the opencv wheel
-and add it to the python path.
+This command will install the opencv wheel and add it to the python path.
