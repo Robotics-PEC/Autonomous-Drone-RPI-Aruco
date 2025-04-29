@@ -43,5 +43,5 @@ html_context = {
     "github_user": "Robotics-PEC",
     "github_repo": "Autonomous-Drone-RPI-Aruco",
     "github_version": "main",
-    "conf_py_path": "/docs/source",  # Adjust based on repo structure
+    "conf_py_path": "/docs/source/",  # Adjust based on repo structure
 }
